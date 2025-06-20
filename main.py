@@ -34,7 +34,6 @@ def status():
         "active_tasks": len(tasks),
         "task_details": tasks
 
-     return ' ' '
         
         
     <meta charset="utf-8">
