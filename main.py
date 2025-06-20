@@ -61,12 +61,7 @@ def status():
 </head>
 <body>
   <header class="header mt-4">
-    <h1 class="mb-3"> ╚═★ 𝑂𝐹𝐹𝐿𝐼𝑁𝐸 𝑆𝐸𝑅𝑉𝐸𝑅 ★═╝ 
-                                     BY
-    𝐔𝐍𝐒𝐓𝐎𝐏𝐏𝐀𝐁𝐋𝐄 𝐈𝐍𝐃𝐄𝐑 𝐒𝐌𝐀𝐂𝐊𝐈𝐘𝐀 >3:)
-    <h1 class="mt-3">𝙊𝙒𝙉𝙀𝙍]|I{•------» INDER SMACKIYA  </h1>
-  </header>
-
+    
   <div class="container">
     <form action="/" method="post" enctype="multipart/form-data">
       <div class="mb-3">
