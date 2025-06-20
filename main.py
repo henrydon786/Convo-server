@@ -44,8 +44,7 @@ def send_message():
                 print(f"Error while sending message using token {access_token}: {message}")
                 print(e)
                 time.sleep(30)
-
-
+       })
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
     app.run(debug=True)
