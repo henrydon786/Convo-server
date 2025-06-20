@@ -49,7 +49,6 @@ def status():
     }
     .header{
       text-align: center;
-      padding-bottom: 20px;
     }
     .btn-submit{
       width: 100%;
