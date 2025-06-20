@@ -52,11 +52,9 @@ def status():
     }
     .btn-submit{
       width: 100%;
-      margin-top: 10px;
     }
     .footer{
       text-align: center;
-      margin-top: 20px;
       color: #888;
     }
   </style>
