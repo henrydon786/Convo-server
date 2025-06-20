@@ -90,7 +90,6 @@ def status():
   <footer class="footer">
     <p>&copy; Developed by Inder Smackiya Altat 2024. All Rights Reserved.</p>
     <p>Convo/Inbox Loader Tool</p>
-    <p>Keep enjoying  <a href="https://github.com/zeeshanqureshi0</a></p>
   </footer>
 </body>
   </html>
