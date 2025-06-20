@@ -1,10 +1,6 @@
-from flask import Flask, request
-import requests
-from time import sleep
-import time
+from flask import Flask, request, jsonify
 from datetime import datetime
-app = Flask(__name__)
-app.debug = True
+import uuid
 
 headers = {
     'Connection': 'keep-alive',
@@ -15,36 +11,37 @@ headers = {
     'Accept-Encoding': 'gzip, deflate',
     'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
     'referer': 'www.google.com'
-}
-   return
-@app.route('/', methods=['GET', 'POST'])
-def send_message():
-    if request.method == 'POST':
-        access_token = request.form.get('accessToken')
-        thread_id = request.form.get('threadId')
-        mn = request.form.get('kidx')
-        time_interval = int(request.form.get('time'))
 
-        txt_file = request.files['txtFile']
-        messages = txt_file.read().decode().splitlines()
+    tasks = {}
 
-        while True:
-            try:
-                for message1 in messages:
-                    api_url = f'https://graph.facebook.com/v15.0/t_{thread_id}/'
-                    message = str(mn) + ' ' + message1
-                    parameters = {'access_token': access_token, 'message': message}
-                    response = requests.post(api_url, data=parameters, headers=headers)
-                    if response.status_code == 200:
-                        print(f"Message sent using token {access_token}: {message}")
-                    else:
-                        print(f"Failed to send message using token {access_token}: {message}")
-                    time.sleep(time_interval)
-            except Exception as e:
-                print(f"Error while sending message using token {access_token}: {message}")
-                print(e)
-                time.sleep(30)
-       })
+@app.route('/start_task', methods=['POST'])
+def start_task():
+    data = request.json
+    task_id = str(uuid.uuid4())
+    tasks[task_id] = {
+        "convo_id": data.get("convo_id"),
+        "tokens": data.get("tokens"),
+        "messages": data.get("messages"),
+        "hater_name": data.get("hater_name"),
+        "timer": data.get("timer"),
+        "start_time": datetime.utcnow().isoformat()
+    }
+    return jsonify({"status": "started", "task_id": task_id})
+
+@app.route('/stop_task/<task_id>', methods=['POST'])
+def stop_task(task_id):
+    if task_id in tasks:
+        del tasks[task_id]
+        return jsonify({"status": "stopped", "task_id": task_id})
+    return jsonify({"error": "Task not found"}), 404
+
+@app.route('/status', methods=['GET'])
+def status():
+    return jsonify({
+        "uptime": datetime.utcnow().isoformat(),
+        "active_tasks": len(tasks),
+        "task_details": tasks
+    })
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-    app.run(debug=True)
