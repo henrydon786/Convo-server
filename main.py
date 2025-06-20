@@ -2,7 +2,10 @@ from flask import Flask, request, jsonify
 from datetime import datetime
 import uuid
 
-headers = {
+app = Flask(__name__)
+
+tasks = {}
+
     'Connection': 'keep-alive',
     'Cache-Control': 'max-age=0',
     'Upgrade-Insecure-Requests': '1',
@@ -12,8 +15,7 @@ headers = {
     'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
     'referer': 'www.google.com'
 
-    tasks = {}
-
+    
 @app.route('/start_task', methods=['POST'])
 def start_task():
     data = request.json
