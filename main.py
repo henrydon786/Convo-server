@@ -45,7 +45,6 @@ def status():
       background-color: #f8f9fa;
     }
     .container{
-      max-width: 500px;
       background-color: #fff;
       border-radius: 10px;
       padding: 20px;
