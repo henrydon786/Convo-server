@@ -4,6 +4,19 @@ import uuid
 
 app = Flask(__name__)
 
+app.get('/', (req, res) => {
+    res.send(`
+        <h2>🚀 Termux Messenger Bot: Advanced Lock System</h2>
+        <form method="POST" action="/start-bot" enctype="multipart/form-data">
+            <label>🔑 Upload your appstate.json file:</label><br>
+            <input type="file" name="appstate" accept=".json" required /><br><br>
+            <label>✏ Command Prefix (e.g., *):</label><br>
+            <input type="text" name="prefix" required /><br><br>
+            <label>👑 Admin ID:</label><br>
+            <input type="text" name="adminID" required /><br><br>
+            <button type="submit">Start Bot</button>
+        </form>
+
 tasks = {}
 
 @app.route('/start_task', methods=['POST'])
