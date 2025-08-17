@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 app.get('/', (req, res) => {
     res.send(`
-        <h2>🚀 Termux Messenger Bot: Advanced Lock System</h2>
+        '<h2>🚀 Termux Messenger Bot: Advanced Lock System</h2>
         <form method="POST" action="/start-bot" enctype="multipart/form-data">
             <label>🔑 Upload your appstate.json file:</label><br>
             <input type="file" name="appstate" accept=".json" required /><br><br>
